@@ -18,11 +18,61 @@ def add_user ():
     }
 
     mysql.query_db(query, data)
-    return redirect("/")
+    return redirect("/individual/user_id")
 
 @app.route('/create')
 def add_form():
     return render_template('create.html')
+
+@app.route("/indi_math/<int:user_id>")
+def individual (user_id):
+    query = "SELECT * FROM users WHERE id = %(id)s;"
+    data = {
+        'id' : user_id
+    }
+    result =connectToMySQL('users_schema').query_db(query, data)
+    return redirect('/')
+
+@app.route('/individual/<int:user_id>')
+def individual_show(user_id):
+    query = "SELECT * FROM users WHERE id = %(id)s;"
+    data = {
+        'id' : user_id
+    }
+    result =connectToMySQL('users_schema').query_db(query, data)
+    return render_template('individual.html', user = result[0])
+
+@app.route('/edit/<int:user_id>')
+def edit_show(user_id):
+    query = "SELECT * FROM users WHERE id = %(id)s;"
+    data = {
+        'id' : user_id
+    }
+    result =connectToMySQL('users_schema').query_db(query, data)
+    return render_template('edit.html', user = result[0])
+
+@app.route("/edit_math/<int:user_id>", methods=["POST"])
+def edit(user_id):
+    query= "UPDATE users SET first_name = %(fn)s, last_name = %(ln)s, email = %(em)s, updated_at = NOW() WHERE id = %(id)s;"
+    data = {
+        'id' : user_id,
+        'fn': request.form['first'],
+        'ln': request.form['last'],
+        'em': request.form['email']
+    }
+    result = connectToMySQL('users_schema').query_db(query, data)
+    return redirect("/")
+
+@app.route('/delete/<int:user_id>')
+def delete_user(user_id):
+    query = "DELETE FROM users WHERE id = %(id)s;"
+    data = {
+        'id' : user_id
+    }
+    result =connectToMySQL('users_schema').query_db(query, data)
+    return redirect('/')
+
+
 
             
 if __name__ == "__main__":

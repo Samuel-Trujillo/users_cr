@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>User</h1> <a href="/">Home</a>
+    <div>
+        <table>
+            <tr>
+                Full Name:{{user['first_name']}} {{user['last_name']}}
+            </tr>
+            <tr>
+                Email:{{user['email']}}
+            </tr>
+            <tr>
+                Created On:{{user['created_at']}}
+            </tr>
+            <tr>
+                Last Updated On:{{user['updated_at']}}
+            </tr>
+        </table>
+    </div>
+    <div>  
+        <a href="edit">Edit</a> <a href="/delete/{{ user['id'] }}">Delete</a>
+    </div>
+
+</body>
+</html>

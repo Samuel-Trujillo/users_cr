@@ -14,6 +14,7 @@
             <th>Full Name</th>
             <th>Email</th>
             <th>Created At</th>
+            <th>Actions</th>
         </tr>
         {% for userselect in all_users %}
         <tr>
@@ -21,6 +22,8 @@
             <td>{{userselect['first_name']}}  {{userselect['last_name']}}</td>
             <td>{{userselect['email']}}</td>
             <td>{{userselect['created_at']}}</td>
+            <td><a href="individual/{{userselect['id']}}">Show</a>  <a href="edit/{{userselect['id']}}">Edit</a>  <a href="delete/{{userselect['id']}}">Delete</a></td>
+            
         </tr>
         {% endfor %}
         <a href="/create">New User</a>
