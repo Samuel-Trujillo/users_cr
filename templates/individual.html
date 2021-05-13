@@ -9,23 +9,13 @@
 <body>
     <h1>User</h1> <a href="/">Home</a>
     <div>
-        <table>
-            <tr>
-                Full Name:{{user['first_name']}} {{user['last_name']}}
-            </tr>
-            <tr>
-                Email:{{user['email']}}
-            </tr>
-            <tr>
-                Created On:{{user['created_at']}}
-            </tr>
-            <tr>
-                Last Updated On:{{user['updated_at']}}
-            </tr>
-        </table>
+        <p>Full Name: {{user['first_name']}} {{user['last_name']}}</p>
+        <p>Email: {{user['email']}}</p>
+        <p>Created On: {{user['created_at']}}</p>
+        <p>Last Updated On: {{user['updated_at']}}</p> 
     </div>
     <div>  
-        <a href="edit">Edit</a> <a href="/delete/{{ user['id'] }}">Delete</a>
+        <a href="/edit/{{ user['id'] }}">Edit</a> <a href="/delete/{{ user['id'] }}">Delete</a>
     </div>
 
 </body>

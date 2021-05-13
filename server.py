@@ -17,8 +17,8 @@ def add_user ():
         'em': request.form['email']
     }
 
-    mysql.query_db(query, data)
-    return redirect("/individual/user_id")
+    user_id= mysql.query_db(query, data)
+    return redirect(f"/individual/{user_id}")
 
 @app.route('/create')
 def add_form():
@@ -49,6 +49,7 @@ def edit_show(user_id):
         'id' : user_id
     }
     result =connectToMySQL('users_schema').query_db(query, data)
+    print(result[0])
     return render_template('edit.html', user = result[0])
 
 @app.route("/edit_math/<int:user_id>", methods=["POST"])
